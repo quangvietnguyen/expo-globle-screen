@@ -45,7 +45,7 @@ function Cloud() {
   });
   return (
     <mesh visible ref={ref}>
-      <sphereBufferGeometry args={[2.005, 64, 32]} />
+      <sphereGeometry args={[2.005, 64, 32]} />
       <meshPhongMaterial map={cloud} transparent={true} />
     </mesh>
   );
