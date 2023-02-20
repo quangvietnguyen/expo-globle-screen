@@ -5,7 +5,6 @@ import earthDayImg from '../../assets/earth.jpeg';
 import earthNightImg from '../../assets/earth-night.jpeg';
 import bumpImg from '../../assets/bump.jpeg';
 import cloudImg from '../../assets/cloud.png';
-import { OrbitControls } from '@react-three/drei/native';
 
 function Globe() {
   const ref = React.useRef();
@@ -21,7 +20,11 @@ function Globe() {
     ref.current.rotation.y = -(clock.getElapsedTime() / 12);
   });
   return (
-    <group ref={ref} onClick={handlerTap}>
+    <group
+      ref={ref}
+      onClick={handlerTap}
+      onWheel={(e) => console.log('wheel spins')}
+    >
       <rectAreaLight
         intensity={1}
         position={[10, 10, 10]}
@@ -75,7 +78,6 @@ export default function ReactThreeFiber(props) {
         <Globe />
         <Cloud />
         {/* <Circle /> */}
-        <OrbitControls />
       </React.Suspense>
     </Canvas>
   );
