@@ -26,7 +26,7 @@ function Globe() {
         onUpdate={(self) => self.lookAt(new THREE.Vector3(0, 0, 0))}
       />
       <mesh visible castShadow position={[0, 0, 0]}>
-        <sphereGeometry args={[2, 64, 32]} />
+        <sphereGeometry args={[2.001, 64, 32]} />
         <meshPhongMaterial map={map} />
       </mesh>
     </group>
@@ -37,7 +37,7 @@ export default function Sun(props) {
   return (
     <Canvas camera={{ position: [0, 0, 10], fov: 40, far: 10000 }}>
       <React.Suspense>
-        <pointLight position={[0, 0, 10]} />
+        <pointLight position={[0, 0, 10]} intensity={15} />
         <Globe />
         {/* <OrbitControls autoRotate enableZoom={false} /> */}
       </React.Suspense>

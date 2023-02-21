@@ -3,7 +3,7 @@ import { TextureLoader, THREE } from 'expo-three';
 import { Canvas, useFrame, useLoader } from '@react-three/fiber/native';
 import moonImg from '../../assets/moon.jpeg';
 
-function Globe() {
+function MoonCore() {
   const ref = React.useRef();
   const map = useLoader(TextureLoader, moonImg);
   useFrame(({ clock }) => {
@@ -33,13 +33,30 @@ function Globe() {
   );
 }
 
+function MoonEclipse() {
+  const ref = React.useRef();
+  useFrame(({ clock }) => {
+    ref.current.rotation.y = clock.getElapsedTime() / 200;
+  });
+  return (
+    <mesh visible ref={ref}>
+      <sphereGeometry args={[2.01, 64, 32]} />
+      <meshPhongMaterial color="red" transparent={true} opacity={0.3} />
+    </mesh>
+  );
+}
+
 export default function Moon(props) {
+  const [isMoonEclipse, setIsMoonEclipse] = React.useState(false);
+  const [x, setX] = React.useState(0);
+  const [y, setY] = React.useState(0);
+  const [z, setZ] = React.useState(10);
   return (
     <Canvas camera={{ position: [0, 0, 10], fov: 40, far: 10000 }}>
       <React.Suspense>
-        <pointLight position={[5, 5, 10]} />
-        <Globe />
-        {/* <OrbitControls autoRotate enableZoom={false} /> */}
+        <pointLight position={[x, y, z]} />
+        <MoonCore />
+        {isMoonEclipse && <MoonEclipse />}
       </React.Suspense>
     </Canvas>
   );

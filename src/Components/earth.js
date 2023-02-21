@@ -5,6 +5,7 @@ import earthDayImg from '../../assets/earth.jpeg';
 import earthNightImg from '../../assets/earth-night.jpeg';
 import bumpImg from '../../assets/bump.jpeg';
 import cloudImg from '../../assets/cloud.png';
+// import { OrbitControls } from '@react-three/drei/native';
 
 function Globe() {
   const ref = React.useRef();
@@ -74,10 +75,11 @@ export default function ReactThreeFiber(props) {
   return (
     <Canvas camera={{ position: [0, 0, 10], fov: 40, far: 10000 }}>
       <React.Suspense>
-        <pointLight position={[5, 5, 10]} />
+        <pointLight position={[0, 0, 10]} />
         <Globe />
         <Cloud />
         {/* <Circle /> */}
+        {/* <OrbitControls /> */}
       </React.Suspense>
     </Canvas>
   );
