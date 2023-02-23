@@ -74,7 +74,7 @@ function MoonCore() {
   );
 }
 
-export default function SunEclipse(props) {
+export default function SunEclipse() {
   return (
     <Canvas camera={{ position: [0, 0, 0], fov: 40, far: 10000 }}>
       <React.Suspense>

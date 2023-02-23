@@ -14,7 +14,8 @@ export default function App() {
         resizeMode="cover"
         style={styles.stars}
       >
-        {isSunEclipse ? <SunEclipse /> : <Moon />}
+        {/* {isSunEclipse ? <SunEclipse /> : <Moon />} */}
+        <Moon />
       </ImageBackground>
     </SafeAreaView>
   );

@@ -33,7 +33,7 @@ function MoonCore() {
   );
 }
 
-function MoonEclipse(opacity = 0.4) {
+function MoonEclipse({ opacity }) {
   const ref = React.useRef();
   useFrame(({ clock }) => {
     ref.current.rotation.y = clock.getElapsedTime() / 200;
@@ -41,14 +41,14 @@ function MoonEclipse(opacity = 0.4) {
   return (
     <mesh visible ref={ref}>
       <sphereGeometry args={[2.01, 64, 32]} />
-      <meshPhongMaterial color="red" transparent={true} opacity={opacity} />
+      <meshPhongMaterial color="red" transparent={true} opacity={0.4} />
     </mesh>
   );
 }
 
 export default function Moon(props) {
   const [isMoonEclipse, setIsMoonEclipse] = React.useState(true);
-  const [eclipseDarkness, setEclipseDarkness] = React.useState(3);
+  const [eclipseDarkness, setEclipseDarkness] = React.useState(0.4);
   const [intensity, setIntensity] = React.useState(1);
   const [x, setX] = React.useState(0);
   const [y, setY] = React.useState(0);
@@ -58,7 +58,7 @@ export default function Moon(props) {
       <React.Suspense>
         <pointLight position={[x, y, z]} intensity={intensity} />
         <MoonCore />
-        {isMoonEclipse && <MoonEclipse opacity={eclipseDarkness / 10} />}
+        {isMoonEclipse && <MoonEclipse opacity={eclipseDarkness} />}
       </React.Suspense>
     </Canvas>
   );
